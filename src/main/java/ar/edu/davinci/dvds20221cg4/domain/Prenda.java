@@ -1,5 +1,6 @@
 package ar.edu.davinci.dvds20221cg4.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -28,7 +29,13 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 
-public class Prenda {
+public class Prenda implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8791033026571491633L;
+	
 	// Configurar poo JPA cual el PK de la tabla prendas
 	@Id
 	// Configurar la estrategia de generación de los ids por JPA
