@@ -10,8 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
 import ar.edu.davinci.dvds20221cg4.domain.Prenda;
+import ar.edu.davinci.dvds20221cg4.domain.TipoPrenda;
 import ar.edu.davinci.dvds20221cg4.exception.BusinessException;
 import ar.edu.davinci.dvds20221cg4.repository.PrendaRepository;
 
@@ -87,6 +87,12 @@ public class PrendaServiceImpl implements PrendaService {
 	@Override
 	public long count() {
 		return repository.count();
+	}
+	
+	
+	@Override
+	public List<TipoPrenda> getTipoPrendas() {
+		return TipoPrenda.getTipoPrendas();
 	}
 	
 }
