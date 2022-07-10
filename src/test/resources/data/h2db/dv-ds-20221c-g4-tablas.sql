@@ -31,6 +31,7 @@ DROP TABLE IF EXISTS prendas;
 --
 -- Drop Table structure for table clientes
 --
+
 DROP TABLE IF EXISTS clientes;
 
 --
@@ -96,7 +97,6 @@ CREATE TABLE ventas_efectivo (
   CONSTRAINT vte_vta_fk FOREIGN KEY (vta_id) REFERENCES ventas (vta_id)
 );
 
-
 --
 -- Table structure for table ventas_tarjeta
 --
@@ -104,8 +104,19 @@ CREATE TABLE ventas_efectivo (
 CREATE TABLE ventas_tarjeta (
   vta_id bigint NOT NULL,
   vtt_cantidad_cuotas int DEFAULT NULL,
-  vtt_coeficiente  decimal(2,2) DEFAULT NULL,
+  vtt_coeficiente decimal(2,2) DEFAULT NULL,
   PRIMARY KEY (vta_id),
   CONSTRAINT vtt_vta_fk FOREIGN KEY (vta_id) REFERENCES ventas (vta_id)
 );
 
+--
+-- Table structure for table negocios
+--
+
+CREATE TABLE negocios (
+  ngc_id bigint NOT NULL AUTO_INCREMENT,
+  ngc_vta_fk bigint NOT NULL,
+  PRIMARY KEY (ngc_id),
+  -- KEY ngc_vta_fk (ngc_vta_id),
+  CONSTRAINT ngc_vta_fk FOREIGN KEY (ngc_id) REFERENCES ventas (vta_id)
+);

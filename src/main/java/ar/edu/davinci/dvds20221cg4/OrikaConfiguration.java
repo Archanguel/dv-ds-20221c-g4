@@ -18,12 +18,14 @@ import ar.edu.davinci.dvds20221cg4.controller.request.ItemUpdateRequest;
 import ar.edu.davinci.dvds20221cg4.controller.request.VentaEfectivoRequest;
 import ar.edu.davinci.dvds20221cg4.controller.request.VentaTarjetaRequest;
 import ar.edu.davinci.dvds20221cg4.controller.response.ItemResponse;
+import ar.edu.davinci.dvds20221cg4.controller.response.NegocioResponse;
 import ar.edu.davinci.dvds20221cg4.controller.response.VentaEfectivoResponse;
 import ar.edu.davinci.dvds20221cg4.controller.response.VentaTarjetaResponse;
 import ar.edu.davinci.dvds20221cg4.controller.view.request.VentaEfectivoCreateRequest;
 import ar.edu.davinci.dvds20221cg4.controller.view.request.VentaItemCreateRequest;
 import ar.edu.davinci.dvds20221cg4.controller.view.request.VentaTarjetaCreateRequest;
 import ar.edu.davinci.dvds20221cg4.domain.Item;
+import ar.edu.davinci.dvds20221cg4.domain.Negocio;
 import ar.edu.davinci.dvds20221cg4.domain.VentaEfectivo;
 import ar.edu.davinci.dvds20221cg4.domain.VentaTarjeta;
 import ar.edu.davinci.dvds20221cg4.controller.request.ClienteInsertRequest;
@@ -293,11 +295,24 @@ public class OrikaConfiguration {
             }
         }).register();
         
+
+
+    	// NEGOCIO
+    	mapperFactory.classMap(Negocio.class, NegocioResponse.class)
+    			.customize(new CustomMapper<Negocio, NegocioResponse>() {
+    				public void mapAtoB(final Negocio negocio, final NegocioResponse negocioResponse,
+    						final MappingContext context) {
+    					LOGGER.info("#### Custom mapping for Negocio --> NegocioResponse ####");
+    					
+    					negocioResponse.setId(negocio.getId());
+    					negocioResponse.setImporteTotal(negocio.calcularGananciaPorDia(null));
+    				}
+    			}).register();
   
 		
 		// Retornameo la instancia del mapper factory
 		return mapperFactory.getMapperFacade();
-	}
 	
+	}
 
 }

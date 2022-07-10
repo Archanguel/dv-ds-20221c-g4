@@ -19,3 +19,13 @@ VALUES
 ('Camisa Gris Oscuro',203.00,'CAMISA'),
 ('Bufanda',34.45,'CAMISA'),
 ('Media',9898.00,'TAPADO');
+
+
+INSERT INTO CLIENTES
+(cli_nombre,
+cli_apellido)
+VALUES
+('Pepe1', 'Pepito1'),
+('Pepe2', 'Pepito2'),
+('Pepe3', 'Pepito3'),
+('Pepe4', 'Pepito4');
