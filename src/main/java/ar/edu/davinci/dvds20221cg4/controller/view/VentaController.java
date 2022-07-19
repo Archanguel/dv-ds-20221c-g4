@@ -42,12 +42,10 @@ import ar.edu.davinci.dvds20221cg4.service.ItemService;
 import ar.edu.davinci.dvds20221cg4.service.VentaService;
 import ma.glasnost.orika.MapperFacade;
 
-
 @Controller
 public class VentaController extends TiendaApp {
 	private final Logger LOGGER = LoggerFactory.getLogger(VentaController.class);
 
-	
 	@Autowired
 	private VentaService ventaService;
 	

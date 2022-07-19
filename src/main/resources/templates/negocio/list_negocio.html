@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>Listado de ventas por día</h1>
+		<h1>Listado de Ventas</h1>
 		<br />
 
 		<table>
@@ -24,6 +24,7 @@
 		<table border="1" cellpadding="10">
 			<thead>
 				<tr>
+					<th>Venta ID</th>
 					<th>Fecha</th>
 					<th>Cliente</th>
 					<th>Importe</th>
@@ -31,6 +32,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="venta : ${listVentas}">
+					<td th:text="${venta.id}">Venta ID</td>
 					<td th:text="${venta.fecha}">Fecha</td>
 					<td th:text="${venta.razonSocial}">Cliente</td>
 					<td th:text="${venta.importeFinalStr}" style="text-align:right;">Importe Final</td>
