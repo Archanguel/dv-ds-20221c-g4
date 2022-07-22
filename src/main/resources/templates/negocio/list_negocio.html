@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>Listado de Ventas</h1>
+		<h1>Listado de Ventas por día</h1>
 		<br />
 
 		<table>
@@ -19,23 +19,36 @@
 				</tr>
 			</tbody>
 		</table>
+		<br />
+
+		<table style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse;">
+			<tbody>
+				<tr>
+					<th style="border: 1px solid; padding: 3px; text-align: center;"><input type="date"></th>
+					<th style="border: 1px solid; padding: 3px; text-align: center;"><button style="cursor: pointer;"><a>Calcular Ganancia del día</a>
+					</button></th>
+					<th style="border: 1px solid; padding: 3px; text-align: center;"><p>Resultado</p></th>
+				</tr>
+			</tbody>
+		</table>
+		
 
 		<br />
-		<table border="1" cellpadding="10">
+		<table border="1" cellpadding="10" style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse; width: 80%;">
 			<thead>
 				<tr>
-					<th>Venta ID</th>
-					<th>Fecha</th>
-					<th>Cliente</th>
-					<th>Importe</th>
+					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Venta ID</th>
+					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Fecha</th>
+					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Cliente</th>
+					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Importe</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="venta : ${listVentas}">
-					<td th:text="${venta.id}">Venta ID</td>
-					<td th:text="${venta.fecha}">Fecha</td>
-					<td th:text="${venta.razonSocial}">Cliente</td>
-					<td th:text="${venta.importeFinalStr}" style="text-align:right;">Importe Final</td>
+					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.id}">Venta ID</td>
+					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.fecha}">Fecha</td>
+					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.razonSocial}">Cliente</td>
+					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.importeFinalStr}">Importe Final</td>
 				</tr>
 			</tbody>
 		</table>
