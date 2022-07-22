@@ -4,23 +4,99 @@
 <head>
 <meta charset="utf-8" />
 <title>Administrador de Clientes</title>
+<style>
+	#cliente {
+	  font-family: Arial, Helvetica, sans-serif;
+	  border-collapse: collapse;
+	  width: 80%;
+	}
+
+	#cliente td, #cliente th {
+	  border: 1px solid #ddd;
+	  padding: 8px;
+	}
+	
+	#cliente tr:nth-child(even){background-color: #f2f2f2;}
+	
+	#cliente tr:hover {background-color: #ddd;}
+	
+	#cliente th {
+	  padding-top: 12px;
+	  padding-bottom: 12px;
+	  text-align: left;
+	  background-color: #04AA6D;
+	  color: white;
+	}
+
+	.container { 
+	width: 100%;
+	box-shadow: 0px 2px 0px 0px gray;
+	}
+	.navbar { 
+	max-width: 1300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	}
+	
+	nav { 
+	flex: 1;
+	text-align: right;
+	}
+	nav ul { 
+	display: inline-block;
+	list-style-type: none;
+	}
+	nav ul li { 
+	display: inline-block;
+	margin-left: 20px;
+	}
+	a { 
+	text-decoration: none;
+	color: black;
+	}
+	a:hover { 
+	color: blue;
+	}
+	p { 
+	color: black;
+	}
+</style>
 </head>
 <body>
+
+	<div class="container">
+		<div class="navbar">
+			<div class="logo">
+				<img src="../../images/tiendaRopitaLogo.png" />
+			</div>
+			
+			<nav>
+				<ul>
+					<li><a href="/tienda">Inicio</a></li>
+					<li><a href="/tienda/prendas/list">Prendas</a></li>
+					<li><a href="/tienda/clientes/list">Clientes</a></li>
+					<li><a href="/tienda/ventas/list">Ventas</a></li>
+					<li><a href="/tienda/negocio/list">Negocio</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 	<div align="center">
 		<h1>Listado de Clientes</h1>
-		<br />
 
 		<table>
 			<tbody>
 				<tr>
-					<th><a href="/tienda">Volver al menú pricipal</a></th>
-					<th>&nbsp;</th>
 					<th><a href="/tienda/clientes/new">Crear un nuevo Cliente</a></th>
 				</tr>
 			</tbody>
 		</table>
 		<br />
-		<table border="1" cellpadding="10">
+		<table id="cliente">
 			<thead>
 				<tr>
 					<th>Cliente ID</th>
@@ -34,9 +110,10 @@
 					<td th:text="${cliente.id}">Cliente ID</td>
 					<td th:text="${cliente.nombre}">Nombre</td>
 					<td th:text="${cliente.apellido}">Apellido</td>
-					<td><a th:href="@{'/tienda/clientes/edit/' + ${cliente.id}}">Editar</a>
-						&nbsp;&nbsp;&nbsp; <a
-						th:href="@{'/tienda/clientes/delete/' + ${cliente.id}}">Borrar</a></td>
+					<td>
+						<button><a th:href="@{'/tienda/clientes/edit/' + ${cliente.id}}">Editar</a></button>
+						<button><a th:href="@{'/tienda/clientes/delete/' + ${cliente.id}}">Borrar</a></button>
+					</td>
 				</tr>
 			</tbody>
 		</table>

@@ -4,22 +4,89 @@
 <head>
 <meta charset="utf-8" />
 <title>Visualizador de ventas por dia</title>
+<style>
+	#negocio {
+	  font-family: Arial, Helvetica, sans-serif;
+	  border-collapse: collapse;
+	  width: 80%;
+	}
+
+	#negocio td, #negocio th {
+	  border: 1px solid #ddd;
+	  padding: 8px;
+	}
+	
+	#negocio tr:nth-child(even){background-color: #f2f2f2;}
+	
+	#negocio tr:hover {background-color: #ddd;}
+	
+	#negocio th {
+	  padding-top: 12px;
+	  padding-bottom: 12px;
+	  text-align: left;
+	  background-color: #04AA6D;
+	  color: white;
+	}
+
+	.container { 
+	width: 100%;
+	box-shadow: 0px 2px 0px 0px gray;
+	}
+	.navbar { 
+	max-width: 1300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	}
+	
+	nav { 
+	flex: 1;
+	text-align: right;
+	}
+	nav ul { 
+	display: inline-block;
+	list-style-type: none;
+	}
+	nav ul li { 
+	display: inline-block;
+	margin-left: 20px;
+	}
+	a { 
+	text-decoration: none;
+	color: black;
+	}
+	a:hover { 
+	color: blue;
+	}
+	p { 
+	color: black;
+	}
+</style>
 </head>
 <body>
+
+	<div class="container">
+		<div class="navbar">
+			<div class="logo">
+				<img src="../../images/tiendaRopitaLogo.png" />
+			</div>
+			
+			<nav>
+				<ul>
+					<li><a href="/tienda">Inicio</a></li>
+					<li><a href="/tienda/prendas/list">Prendas</a></li>
+					<li><a href="/tienda/clientes/list">Clientes</a></li>
+					<li><a href="/tienda/ventas/list">Ventas</a></li>
+					<li><a href="/tienda/negocio/list">Negocio</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 	<div align="center">
 		<h1>Listado de Ventas por día</h1>
-		<br />
-
-		<table>
-			<tbody>
-				<tr>
-					<th><button style="background-color: #008CBA; font-size: medium; font-family:Arial; ">
-						<a style="color: white" href="/tienda">Volver al menú pricipal</a></button></th>
-					<th>&nbsp;</th>
-				</tr>
-			</tbody>
-		</table>
-		<br />
 
 		<table style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse;">
 			<tbody>
@@ -34,21 +101,21 @@
 		
 
 		<br />
-		<table border="1" cellpadding="10" style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse; width: 80%;">
+		<table id="negocio">
 			<thead>
 				<tr>
-					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Venta ID</th>
-					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Fecha</th>
-					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Cliente</th>
-					<th style="border: 1px solid #ddd; padding: 8px; padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;">Importe</th>
+					<th>Venta ID</th>
+					<th>Fecha</th>
+					<th>Cliente</th>
+					<th>Importe</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="venta : ${listVentas}">
-					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.id}">Venta ID</td>
-					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.fecha}">Fecha</td>
-					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.razonSocial}">Cliente</td>
-					<td style="border: 1px solid #ddd; padding: 8px;" th:text="${venta.importeFinalStr}">Importe Final</td>
+					<td th:text="${venta.id}">Venta ID</td>
+					<td th:text="${venta.fecha}">Fecha</td>
+					<td th:text="${venta.razonSocial}">Cliente</td>
+					<td th:text="${venta.importeFinalStr}">Importe Final</td>
 				</tr>
 			</tbody>
 		</table>

@@ -4,16 +4,69 @@
 <head>
 <meta charset="utf-8" />
 <title>Editar Prenda</title>
+<style>
+	.container { 
+	width: 100%;
+	box-shadow: 0px 2px 0px 0px gray;
+	}
+	.navbar { 
+	max-width: 1300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	}
+	
+	nav { 
+	flex: 1;
+	text-align: right;
+	}
+	nav ul { 
+	display: inline-block;
+	list-style-type: none;
+	}
+	nav ul li { 
+	display: inline-block;
+	margin-left: 20px;
+	}
+	a { 
+	text-decoration: none;
+	color: black;
+	}
+	a:hover { 
+	color: blue;
+	}
+	p { 
+	color: black;
+	}
+</style>
 </head>
 <body>
+
+	<div class="container">
+		<div class="navbar">
+			<div class="logo">
+				<img src="../../images/tiendaRopitaLogo.png" />
+			</div>
+			
+			<nav>
+				<ul>
+					<li><a href="/tienda">Inicio</a></li>
+					<li><a href="/tienda/prendas/list">Prendas</a></li>
+					<li><a href="/tienda/clientes/list">Clientes</a></li>
+					<li><a href="/tienda/ventas/list">Ventas</a></li>
+					<li><a href="/tienda/negocio/list">Negocio</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 	<div align="center">
 		<h1>Editar Prenda</h1>
-		<br />
 		<table>
 			<tbody>
 				<tr>
-					<th><a href="/tienda">Volver al menú pricipal</a></th>
-					<th>&nbsp;</th>
 					<th><a href="/tienda/prendas/list">Volver</a></th>
 				</tr>
 			</tbody>
