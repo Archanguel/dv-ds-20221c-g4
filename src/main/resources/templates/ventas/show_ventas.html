@@ -5,6 +5,29 @@
 <meta charset="utf-8" />
 <title>Administrador de Ventas</title>
 <style>
+	#venta {
+	  font-family: Arial, Helvetica, sans-serif;
+	  border-collapse: collapse;
+	  width: 80%;
+	}
+
+	#venta td, #venta th {
+	  border: 1px solid #ddd;
+	  padding: 8px;
+	}
+	
+	#venta tr:nth-child(even){background-color: #f2f2f2;}
+	
+	#venta tr:hover {background-color: #ddd;}
+	
+	#venta th {
+	  padding-top: 12px;
+	  padding-bottom: 12px;
+	  text-align: center;
+	  background-color: #04AA6D;
+	  color: white;
+	}
+	
 	.container { 
 	width: 100%;
 	box-shadow: 0px 2px 0px 0px gray;
@@ -41,15 +64,62 @@
 	p { 
 	color: black;
 	}
+	
+	.button {
+	  border: none;
+	  color: white;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  cursor: pointer;
+	  float: left;
+	  border-radius: 5px;
+	}
+	
+	.green {
+	  background-color: #04AA6D;
+	}
+	
+	.green:hover {
+	  background-color: #15BB5E;
+	}
+	
+	.orange {
+	  background-color: #FF781B;
+	}
+	
+	.orange:hover {
+	  background-color: #FFB44D;
+	}
+	
+	.red {
+	  background-color: #C90000;
+	}
+	
+	.red:hover {
+	  background-color: #FF4D4D;
+	}
+	
+	.topBtn {
+	  padding: 10px 20px;
+	  font-size: 16px;
+	  border-radius: 10px;
+	}
+	
+	.imagen {
+	  width: 40px;
+	  height: 40px;
+	  background-image: url('https://i.imgur.com/p10u12j.png');
+	  background-repeat: no-repeat;
+	  background-size: contain;
+	}
 </style>
 </head>
 <body>
 
 	<div class="container">
 		<div class="navbar">
-			<div class="logo">
-				<img src="../../images/tiendaRopitaLogo.png" />
-			</div>
+			<div class="imagen"></div>
 			
 			<nav>
 				<ul>
@@ -68,13 +138,16 @@
 		<table>
 			<tbody>
 				<tr>
-					<th><button style="background-color: #008CBA; font-size: medium; font-family:Arial; ">
-						<a style="color: white" href="/tienda/ventas/list">Volver al listado de ventas</a></button></th>
+					<th>
+						<a href="/tienda/ventas/list">
+							<button class="button red topBtn">Volver al listado de ventas</button>
+						</a>
+					</th>
 				</tr>
 			</tbody>
 		</table>
 		<br/>
-		<table border="2" cellpadding="20" style="border-color:black" width="50%">
+		<table id="venta">
 			<thead>
 				<tr  style="background:gray;color:white">
 					<th colspan="1" rowspan="1"  style="background-blend-mode: color-dodge">Ventas</th>
@@ -82,7 +155,7 @@
 			</thead>
 			<tbody>
 				<tr  th:each="venta : ${listVentas}">
-					<table border="2" cellpadding="20" style="border-color:black" width="50%">
+					<table id="venta">
 						<thead>
 							<tr  style="background:red;color:white">
 								<th colspan="1" rowspan="1" >Venta ID</th>
@@ -101,12 +174,12 @@
 								<td th:text="${venta.cliente.apellido}">Apellido</td>
 								<td th:text="${venta.importeFinal}" class="number"	style="text-align: right;">Importe Final</td>
 								<td>
-									<button style="background-color: #008CBA; font-size: medium; font-family:Arial; ">
-										<a style="color: white" th:href="@{'/tienda/ventas/' + ${venta.id} +'/item/new'}">Agregar Item</a>
-									</button>
+									<a th:href="@{'/tienda/ventas/' + ${venta.id} +'/item/new'}">
+										<button class="button green">Agregar Item</button>
+									</a>
 
 								</td>
-								<table border="2" cellpadding="10" style="border-color:black; text-align:center" width="50%">
+								<table id="venta">
 									<thead>
 										<tr  style="background:blue;color:white">
 											<th>ID</th>
@@ -123,9 +196,12 @@
 											<td th:text="${item.prenda.descripcion}">Prenda</td>
 											<td th:text="${item.importe}" class="number">Importe</td>
 											<td>
-												<a th:href="@{'/tienda/item/edit/' + ${item.id}}">Editar</a>
-												&nbsp;&nbsp;&nbsp;
-												<a th:href="@{'/tienda/item/delete/' + ${item.id}}">Borrar</a>
+												<a th:href="@{'/tienda/item/edit/' + ${item.id}}">
+													<button class="button orange">Editar</button>
+												</a>
+												<a th:href="@{'/tienda/item/delete/' + ${item.id}}">
+													<button class="button red">Borrar</button>
+												</a>
 											</td>
 										</tr>
 									</tbody>

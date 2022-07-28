@@ -1,6 +1,7 @@
 package ar.edu.davinci.dvds20221cg4.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

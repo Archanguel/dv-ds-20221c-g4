@@ -41,15 +41,50 @@
 	p { 
 	color: black;
 	}
+	
+	.button {
+	  border: none;
+	  color: white;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  cursor: pointer;
+	  float: left;
+	  padding: 10px 20px;
+	  font-size: 16px;
+	  border-radius: 10px;
+	}
+	
+	.green {
+	  background-color: #04AA6D;
+	}
+	
+	.green:hover {
+	  background-color: #15BB5E;
+	}
+	
+	.red {
+	  background-color: #C90000;
+	}
+	
+	.red:hover {
+	  background-color: #FF4D4D;
+	}
+	
+	.imagen {
+	  width: 40px;
+	  height: 40px;
+	  background-image: url('https://i.imgur.com/p10u12j.png');
+	  background-repeat: no-repeat;
+	  background-size: contain;
+	}
 </style>
 </head>
 <body>
 
 	<div class="container">
 		<div class="navbar">
-			<div class="logo">
-				<img src="../../images/tiendaRopitaLogo.png" />
-			</div>
+			<div class="imagen"></div>
 			
 			<nav>
 				<ul>
@@ -67,7 +102,7 @@
 		<table>
 			<tbody>
 				<tr>
-					<th><a href="/tienda/clientes/list">Volver</a></th>
+					<th><a href="/tienda/clientes/list"><button class="button red">Volver</button></a></th>
 				</tr>
 			</tbody>
 		</table>
@@ -85,7 +120,7 @@
 					<td><input type="text" th:field="*{apellido}" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit">Grabar</button></td>
+					<td colspan="2"><button type="submit" class="button green">Grabar</button></td>
 				</tr>
 			</table>
 		</form>

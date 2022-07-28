@@ -2,6 +2,7 @@ package ar.edu.davinci.dvds20221cg4.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;

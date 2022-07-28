@@ -64,15 +64,21 @@
 	p { 
 	color: black;
 	}
+	
+	.imagen {
+	  width: 40px;
+	  height: 40px;
+	  background-image: url('https://i.imgur.com/p10u12j.png');
+	  background-repeat: no-repeat;
+	  background-size: contain;
+	}
 </style>
 </head>
 <body>
 
 	<div class="container">
 		<div class="navbar">
-			<div class="logo">
-				<img src="../../images/tiendaRopitaLogo.png" />
-			</div>
+			<div class="imagen"></div>
 			
 			<nav>
 				<ul>
@@ -91,10 +97,14 @@
 		<table style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse;">
 			<tbody>
 				<tr>
-					<th style="border: 1px solid; padding: 3px; text-align: center;"><input type="date"></th>
-					<th style="border: 1px solid; padding: 3px; text-align: center;"><button style="cursor: pointer;"><a>Calcular Ganancia del día</a>
-					</button></th>
-					<th style="border: 1px solid; padding: 3px; text-align: center;"><p>Resultado</p></th>
+					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;"><input type="date" id="selectedDate" ></th>
+					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;">
+						<button style="cursor: pointer;" onclick="calcularGanancia()">Calcular Ganancia del día</button>
+					</th>
+					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;"><p id="totalGanancia">Resultado</p></th>
+				
+					<td th:href="@{'/tienda/item/edit/' + ${item.id}}"></td>
+					<td th:each="negocio : ${listNegocios}" th:text="${negocio}"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -120,5 +130,15 @@
 			</tbody>
 		</table>
 	</div>
+	
+<script>
+	function calcularGanancia() {
+		if(document.getElementById("selectedDate").value){
+			document.getElementById("totalGanancia").innerHTML = document.getElementById("selectedDate").value;
+		} else {
+			document.getElementById("totalGanancia").innerHTML = "Fecha Inválida";
+		}
+	}
+</script>
 </body>
 </html>

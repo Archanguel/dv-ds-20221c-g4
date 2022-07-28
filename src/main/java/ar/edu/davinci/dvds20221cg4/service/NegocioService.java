@@ -16,13 +16,16 @@ import ar.edu.davinci.dvds20221cg4.exception.BusinessException;
 public interface NegocioService {
 	
 	// Método de búsqueda.
-	Venta findById(Long id) throws BusinessException;
+	Negocio findById(Long id) throws BusinessException;
 	
 	// Método de listado.
-	List<Venta> list();
-	Page<Venta> list(Pageable pageable);
+	List<Negocio> list();
+	//List<Venta> list();
+	//Page<Venta> list(Pageable pageable);
 	
 	// Método para contar cantidad de datos.
-	long count();
-	
+	//long count();
+
+	// Método para calcular las ganancias por día
+	List<Negocio> calcularGananciaPorDia(Date date);
 }

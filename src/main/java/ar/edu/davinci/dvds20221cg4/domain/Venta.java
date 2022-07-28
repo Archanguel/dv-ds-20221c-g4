@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -72,7 +73,11 @@ public abstract class Venta implements Serializable {
 	@OneToMany(mappedBy="venta", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JsonManagedReference
 	private List<Item> items;
- 	
+
+	@ManyToOne(targetEntity = Negocio.class, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "vta_ngc_id", referencedColumnName = "ngc_id")
+	private Negocio negocio;
+	
 	public abstract Double conRecargo(Double importeBase);
 	
 	public String getRazonSocial() {
@@ -107,6 +112,5 @@ public abstract class Venta implements Serializable {
 		}
 		this.items.add(item);
 	}
-	
 
 }

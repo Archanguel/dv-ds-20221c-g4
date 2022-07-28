@@ -64,15 +64,52 @@
 	p { 
 	color: black;
 	}
+	
+	.button {
+	  border: none;
+	  color: white;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  cursor: pointer;
+	  float: left;
+	}
+	
+	.green {
+	  background-color: #04AA6D;
+	  padding: 10px 20px;
+	  font-size: 16px;
+	  border-radius: 10px;
+	}
+	
+	.green:hover {
+	  background-color: #15BB5E;
+	}
+	
+	.orange {
+	  background-color: #FF781B;
+	  border-radius: 5px;
+	  margin-right: 5px;
+	}
+	
+	.orange:hover {
+	  background-color: #FFB44D;
+	}
+	
+	.imagen {
+	  width: 40px;
+	  height: 40px;
+	  background-image: url('https://i.imgur.com/p10u12j.png');
+	  background-repeat: no-repeat;
+	  background-size: contain;
+	}
 </style>
 </head>
 <body>
 
 	<div class="container">
 		<div class="navbar">
-			<div class="logo">
-				<img src="../../images/tiendaRopitaLogo.png" />
-			</div>
+			<div class="imagen"></div>
 			
 			<nav>
 				<ul>
@@ -91,12 +128,16 @@
 		<table>
 			<tbody>
 				<tr>
-					<th><button style="background-color: #008CBA; font-size: medium; font-family:Arial;">
-						<a style="color: white"  href="/tienda/ventas/efectivo/new">Crear una nueva
-							Venta Efectivo</a></button></th>
-					<th><button style="background-color: #008CBA; font-size: medium; font-family:Arial;">
-						<a style="color: white"  href="/tienda/ventas/tarjeta/new">Crear una nueva
-							Venta Tarjeta</a></button></th>
+					<th>
+						<a href="/tienda/ventas/efectivo/new">
+							<button class="button green">Crear una nueva Venta Efectivo</button>
+						</a>
+					</th>
+					<th>
+						<a href="/tienda/ventas/tarjeta/new">
+							<button class="button green">Crear una nueva Venta Tarjeta</button>
+						</a>
+					</th>
 				</tr>
 			</tbody>
 		</table>
@@ -119,8 +160,14 @@
 					<td th:text="${venta.razonSocial}">Cliente</td>
 					<td th:text="${venta.importeFinalStr}" style="text-align:right;">Importe Final</td>
 					<td>
-						<button><a th:href="@{'/tienda/ventas/show/' + ${venta.id}}">Mostrar</a></button>
-<!-- 					<button><a th:href="@{'/tienda/ventas/delete/' + ${venta.id}}">Borrar</a></button> -->
+						<a th:href="@{'/tienda/ventas/show/' + ${venta.id}}">
+							<button class="button orange">Mostrar</button>
+						</a>
+						<!-- 
+							<button>
+								<a th:href="@{'/tienda/ventas/delete/' + ${venta.id}}">Borrar</a>
+							</button>
+						-->
 					</td>
 				</tr>
 			</tbody>

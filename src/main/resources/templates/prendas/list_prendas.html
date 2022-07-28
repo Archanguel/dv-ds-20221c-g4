@@ -64,15 +64,61 @@
 	p { 
 	color: black;
 	}
+	
+	.button {
+	  border: none;
+	  color: white;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  cursor: pointer;
+	  float: left;
+	}
+	
+	.green {
+	  background-color: #04AA6D;
+	  padding: 10px 20px;
+	  font-size: 16px;
+	  border-radius: 10px;
+	}
+	
+	.green:hover {
+	  background-color: #15BB5E;
+	}
+	
+	.orange {
+	  background-color: #FF781B;
+	  border-radius: 5px;
+	  margin-right: 5px;
+	}
+	
+	.orange:hover {
+	  background-color: #FFB44D;
+	}
+	
+	.red {
+	  background-color: #C90000;
+	  border-radius: 5px;
+	}
+	
+	.red:hover {
+	  background-color: #FF4D4D;
+	}
+	
+	.imagen {
+	  width: 40px;
+	  height: 40px;
+	  background-image: url('https://i.imgur.com/p10u12j.png');
+	  background-repeat: no-repeat;
+	  background-size: contain;
+	}
 </style>
 </head>
 <body>
 
 	<div class="container">
 		<div class="navbar">
-			<div class="logo">
-				<img src="../../images/tiendaRopitaLogo.png" />
-			</div>
+			<div class="imagen"></div>
 			
 			<nav>
 				<ul>
@@ -91,18 +137,11 @@
 		<table>
 			<tbody>
 				<tr>
-					<th><a href="/tienda/prendas/new">Crear una nueva Prenda</a></th>
+					<th><a href="/tienda/prendas/new"><button class="button green">Crear una nueva Prenda</button></a></th>
 				</tr>
 			</tbody>
 		</table>
 		<br />
-		<div style = "display:flex;flex-direction:row">
-				<p> Page Number:  </p>
-				<p th:text="${pageNumber}">Page Number</p>
-				<br/>
-				<p> Total Pages:  </p>
-				<p th:text="${totalPages}">Total Pages</p>
-		</div>
 
 		<table id="prenda">
 			<thead>
@@ -123,12 +162,20 @@
 					<td th:text="${prenda.tipo.descripcion}">Tipo</td>
 					<td th:text="${prenda.precioBase}">Precio Base</td>
 					<td>
-						<button><a th:href="@{'/tienda/prendas/edit/' + ${prenda.id}}">Editar</a></button>
-						<button><a th:href="@{'/tienda/prendas/delete/' + ${prenda.id}}">Borrar</a></button>
+						<a th:href="@{'/tienda/prendas/edit/' + ${prenda.id}}"><button class="button orange">Editar</button></a>
+						<a th:href="@{'/tienda/prendas/delete/' + ${prenda.id}}"><button class="button red">Borrar</button></a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<br />
+		<div style = "display:flex;flex-direction:row">
+				<p> Page Number:  </p>
+				<p th:text="${pageNumber}">Page Number</p>
+				<br/>
+				<p> Total Pages:  </p>
+				<p th:text="${totalPages}">Total Pages</p>
+		</div>
 	</div>
 </body>
 </html>

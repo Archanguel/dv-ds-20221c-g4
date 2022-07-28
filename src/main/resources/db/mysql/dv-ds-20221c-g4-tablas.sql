@@ -25,9 +25,12 @@ CREATE TABLE ventas (
   tipo_venta varchar(31) NOT NULL,
   vta_fecha datetime(6) DEFAULT NULL,
   vta_cli_id bigint NOT NULL,
+  vta_ngc_id BIGINT DEFAULT NULL,
   PRIMARY KEY (vta_id),
   KEY vta_cli_fk (vta_cli_id),
-  CONSTRAINT vta_cli_fk FOREIGN KEY (vta_cli_id) REFERENCES clientes (cli_id)
+  CONSTRAINT vta_cli_fk FOREIGN KEY (vta_cli_id) REFERENCES clientes (cli_id),
+  KEY vta_ngc_fk (vta_ngc_id),
+  CONSTRAINT vta_ngc_fk FOREIGN KEY (vta_ngc_id) REFERENCES negocios (ngc_id)
 );
 --
 -- Table structure for table venta_items
@@ -66,8 +69,6 @@ CREATE TABLE ventas_tarjeta (
 --
 CREATE TABLE negocios (
   ngc_id bigint NOT NULL AUTO_INCREMENT,
-  ngc_vta_fk bigint NOT NULL,
+  ngc_total decimal(19,2) DEFAULT NULL,
   PRIMARY KEY (ngc_id),
-  -- KEY ngc_vta_fk (ngc_vta_id),
-  CONSTRAINT ngc_vta_fk FOREIGN KEY (ngc_id) REFERENCES ventas (vta_id)
 );

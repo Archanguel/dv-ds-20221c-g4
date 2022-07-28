@@ -3,8 +3,10 @@ package ar.edu.davinci.dvds20221cg4.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +33,6 @@ public class VentaServiceImpl implements VentaService {
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(VentaServiceImpl.class);
 
-	
 	private final VentaRepository ventaRepository;
 
 	private final VentaEfectivoRepository ventaEfectivoRepository;
@@ -243,26 +244,18 @@ public class VentaServiceImpl implements VentaService {
 	
 	private Prenda getPrenda(Item requestItem) throws BusinessException {
 		if (requestItem.getPrenda().getId() != null) {
-			
 			return prendaService.findById(requestItem.getPrenda().getId());
-			
 		} else {
 			throw new BusinessException("La Prenda es obligatoria");
 		}
 	}
 
-
 	private Item getItem(Long id) throws BusinessException {
-		
 		return itemService.findById(id);
-
 	}
 
-
 	private Cliente getCliente(Long id) throws BusinessException {
-
 		return clienteService.findById(id);
-	
 	}
 
 }

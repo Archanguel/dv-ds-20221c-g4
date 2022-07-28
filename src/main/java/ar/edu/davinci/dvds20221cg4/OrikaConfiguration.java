@@ -298,16 +298,16 @@ public class OrikaConfiguration {
 
 
     	// NEGOCIO
-    	/*mapperFactory.classMap(Negocio.class, NegocioResponse.class)
-    			.customize(new CustomMapper<Negocio, NegocioResponse>() {
-    				public void mapAtoB(final Negocio negocio, final NegocioResponse negocioResponse,
-    						final MappingContext context) {
-    					LOGGER.info("#### Custom mapping for Negocio --> NegocioResponse ####");
-    					
-    					//negocioResponse.setId(negocio.getId());
-    					//negocioResponse.setImporteTotal(negocio.calcularGananciaPorDia(null));
-    				}
-    			}).register();*/
+        mapperFactory.classMap(Negocio.class, NegocioResponse.class)
+			.customize(new CustomMapper<Negocio, NegocioResponse>() {
+				public void mapAtoB(final Negocio negocio, final NegocioResponse negocioResponse,
+						final MappingContext context) {
+					LOGGER.info(" #### Custom mapping for Negocio --> NegocioResponse #### ");
+					
+					negocioResponse.setId(negocio.getId());
+					negocioResponse.setImporteTotal(negocio.calcularGananciaTotal());
+				}
+			}).register();
   
 		
 		// Retornameo la instancia del mapper factory

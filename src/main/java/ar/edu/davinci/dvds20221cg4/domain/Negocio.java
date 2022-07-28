@@ -2,51 +2,39 @@ package ar.edu.davinci.dvds20221cg4.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="tipo_venta")
-@Table(name="ventas")
+@Table(name="negocios")
 
 //Configuración de lombok
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@SuperBuilder
-public abstract class Negocio implements Serializable {
+@Builder
+public class Negocio implements Serializable {
 
 	
 	private static final long serialVersionUID = 9002003896900479460L;
@@ -57,54 +45,25 @@ public abstract class Negocio implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
 	// Configuración por JPA del nombre de la columna
-	@Column(name = "vta_id")
+	@Column(name = "ngc_id")
 	private Long id;
 	
-	@ManyToOne(targetEntity = Cliente.class, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinColumn(name="vta_cli_id", referencedColumnName="cli_id", nullable = false)
-	private Cliente cliente;
-	
-	@Column(name = "vta_fecha")
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
-	
-	@OneToMany(mappedBy="venta", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JsonManagedReference
-	private List<Item> items;
- 	
-	public abstract Double conRecargo(Double importeBase);
-	
-	public String getRazonSocial() {
-		return cliente.getRazonSocial();
-	}
-	
-	public BigDecimal importeBruto() {
-		Double suma = items.stream()
-				.collect(Collectors.summingDouble(item -> item.importe().doubleValue()));
-		return new BigDecimal(suma).setScale(2, RoundingMode.UP);
-	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "negocio", cascade = CascadeType.PERSIST, orphanRemoval = true   )
+	@JsonIgnore
+	private List<Venta> ventas;
 
-	// Template Method
-	public BigDecimal importeFinal() {
-		Double suma = items.stream()
-		.collect(Collectors.summingDouble(item -> conRecargo(item.importe().doubleValue())));
-		return new BigDecimal(suma).setScale(2, RoundingMode.UP);
-	}
+	@Column(name = "ngc_ganancia")
+	private BigDecimal ganancia;
 	
-	public String getImporteFinalStr() {
-		return importeFinal().toString();
-	}
-	
-	public boolean esDeFecha(Date fecha) {
-		return (this.fecha.compareTo(fecha) == 0) ? true : false;
-	}
-
-
-	public void addItem(Item item) {
-		if (this.items == null) {
-			this.items = new ArrayList<Item>();
+    public BigDecimal calcularGananciaPorDia(Date dia) {
+    	return ventas.stream().filter(venta -> venta.getFecha() == dia).map(Venta::importeFinal).reduce(BigDecimal::add).get();
+    }
+    
+    public BigDecimal calcularGananciaTotal() {
+		if(ventas.stream().map(Venta::importeFinal).reduce(BigDecimal::add).isPresent()) {
+			return ventas.stream().map(Venta::importeFinal).reduce(BigDecimal::add).get();
+		} else {
+			return BigDecimal.ZERO;
 		}
-		this.items.add(item);
-	}
-
+	};
 }
