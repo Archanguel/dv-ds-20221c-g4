@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import ar.edu.davinci.dvds20221cg4.controller.TiendaApp;
+import ar.edu.davinci.dvds20221cg4.domain.Cliente;
 import ar.edu.davinci.dvds20221cg4.domain.Negocio;
 import ar.edu.davinci.dvds20221cg4.domain.Venta;
 import ar.edu.davinci.dvds20221cg4.service.NegocioService;
@@ -42,6 +43,15 @@ public class NegocioController extends TiendaApp {
 
 		LOGGER.info("ventas.size: " + ventas.getNumberOfElements());
 		return "negocio/list_negocio";
+	}
+	
+	@GetMapping(path = "negocio/ganancia")
+	public String showGanancia(Model model) {
+		List<Negocio> negocios = negocioService.list();
+		model.addAttribute("listNegocios", negocios);
+
+		LOGGER.info("ventas.size: " + negocios);
+		return "negocio/list_negocio2";
 	}
 	
 	/*@GetMapping(path = "negocio/list")

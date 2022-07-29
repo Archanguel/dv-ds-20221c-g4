@@ -92,7 +92,7 @@
 		</div>
 	</div>
 	<div align="center">
-		<h1>Listado de Ventas por día</h1>
+		<h1>Listado del Negocio</h1>
 
 		<table style="font-family: Arial, Helvetica, sans-serif; border-collapse: collapse;">
 			<tbody>
@@ -103,7 +103,7 @@
 					</th>
 					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;"><p id="totalGanancia">Resultado</p></th>
 				
-					<a href="/tienda/negocio/ganancia"><button>VOLVER</button></a>
+					<a href="/tienda/negocio/list"><button>VOLVER</button></a>
 				</tr>
 			</tbody>
 		</table>
@@ -113,18 +113,18 @@
 		<table id="negocio">
 			<thead>
 				<tr>
-					<th>Venta ID</th>
+					<th>Negocio ID</th>
+					<th>Ventas</th>
 					<th>Fecha</th>
-					<th>Cliente</th>
-					<th>Importe</th>
+					<th>Ganancia</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="venta : ${listVentas}">
-					<td th:text="${venta.id}">Venta ID</td>
-					<td th:text="${venta.fecha}">Fecha</td>
-					<td th:text="${venta.razonSocial}">Cliente</td>
-					<td th:text="${venta.importeFinalStr}">Importe Final</td>
+				<tr th:each="negocio : ${listNegocios}">
+					<td th:text="${negocio.id}">Negocio ID</td>
+					<td th:text="${negocio.ventas}">Ventas</td>
+					<td th:text="${negocio.fecha}">Fecha</td>
+					<td th:text="${negocio.ganancia}">Ganancia</td>
 				</tr>
 			</tbody>
 		</table>

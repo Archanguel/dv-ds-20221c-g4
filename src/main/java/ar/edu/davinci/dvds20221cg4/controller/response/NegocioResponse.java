@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class NegocioResponse {
 
 	private Long id;
-	//private Date fecha;
+	private Date fecha;
 	private BigDecimal importeTotal;
 
 }

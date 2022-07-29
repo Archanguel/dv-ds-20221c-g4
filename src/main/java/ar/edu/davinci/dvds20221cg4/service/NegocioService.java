@@ -22,9 +22,6 @@ public interface NegocioService {
 	List<Negocio> list();
 	//List<Venta> list();
 	//Page<Venta> list(Pageable pageable);
-	
-	// Método para contar cantidad de datos.
-	//long count();
 
 	// Método para calcular las ganancias por día
 	List<Negocio> calcularGananciaPorDia(Date date);

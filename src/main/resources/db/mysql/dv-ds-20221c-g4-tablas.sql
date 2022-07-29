@@ -69,6 +69,7 @@ CREATE TABLE ventas_tarjeta (
 --
 CREATE TABLE negocios (
   ngc_id bigint NOT NULL AUTO_INCREMENT,
-  ngc_total decimal(19,2) DEFAULT NULL,
+  ngc_fecha datetime(6) DEFAULT NULL,
+  ngc_ganancia decimal(19,2) DEFAULT NULL,
   PRIMARY KEY (ngc_id),
 );
