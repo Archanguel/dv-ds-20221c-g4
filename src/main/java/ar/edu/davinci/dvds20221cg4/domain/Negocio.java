@@ -52,8 +52,10 @@ public class Negocio implements Serializable {
 	@JsonIgnore
 	private List<Venta> ventas;
 
+	// ESTO NO VA
 	@Column(name = "ngc_fecha")
 	private Date fecha;
+	// ----------
 
 	@Column(name = "ngc_ganancia")
 	private BigDecimal ganancia;

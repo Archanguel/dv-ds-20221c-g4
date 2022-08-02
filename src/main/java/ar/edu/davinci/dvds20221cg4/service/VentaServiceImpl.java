@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.davinci.dvds20221cg4.domain.Cliente;
 import ar.edu.davinci.dvds20221cg4.domain.Item;
+import ar.edu.davinci.dvds20221cg4.domain.Negocio;
 import ar.edu.davinci.dvds20221cg4.domain.Prenda;
 import ar.edu.davinci.dvds20221cg4.domain.Venta;
 import ar.edu.davinci.dvds20221cg4.domain.VentaEfectivo;
@@ -32,40 +33,36 @@ import ar.edu.davinci.dvds20221cg4.repository.VentaTarjetaRepository;
 public class VentaServiceImpl implements VentaService {
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(VentaServiceImpl.class);
-
 	private final VentaRepository ventaRepository;
-
 	private final VentaEfectivoRepository ventaEfectivoRepository;
-	
 	private final VentaTarjetaRepository ventaTarjetaRepository;
-	
 	private final ClienteService clienteService;
-
 	private final PrendaService prendaService;
-	
 	private final ItemService itemService;
+	private final NegocioService negocioService;
 
-	
 	@Autowired
 	public VentaServiceImpl(final VentaRepository ventaRepository,
 			final VentaEfectivoRepository ventaEfectivoRepository,
 			final VentaTarjetaRepository ventaTarjetaRepository,
 			final ClienteService clienteService,
 			final PrendaService prendaService,
-			final ItemService itemService) {
+			final ItemService itemService,
+			final NegocioService negocioService) {
 		this.ventaRepository = ventaRepository;
 		this.ventaEfectivoRepository = ventaEfectivoRepository;
 		this.ventaTarjetaRepository = ventaTarjetaRepository;
 		this.clienteService = clienteService;
 		this.prendaService = prendaService;
 		this.itemService = itemService;
-
+		this.negocioService = negocioService;
 	}
 
 
 	@Override
 	public VentaEfectivo save(VentaEfectivo venta) throws BusinessException {
 		Cliente cliente = null;
+		Negocio negocio = null;
 		if (venta.getCliente().getId() != null) {
 			cliente = getCliente(venta.getCliente().getId()); 
 		} else {
@@ -75,6 +72,12 @@ public class VentaServiceImpl implements VentaService {
 		List<Item> items = new ArrayList<Item>(); 
 		if (venta.getItems() != null) {
 			items = getItems(venta.getItems());
+		}
+
+		if (venta.getNegocio().getId() != null) {
+			negocio = getNegocio(venta.getNegocio().getId());
+		} else {
+			throw new BusinessException("El negocio es obligatorio");
 		}
 		
 		venta = VentaEfectivo.builder()
@@ -258,4 +261,7 @@ public class VentaServiceImpl implements VentaService {
 		return clienteService.findById(id);
 	}
 
+	private Negocio getNegocio(Long id) throws BusinessException {
+		return negocioService.findById(id);
+	}
 }

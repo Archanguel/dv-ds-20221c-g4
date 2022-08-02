@@ -3,6 +3,8 @@ package ar.edu.davinci.dvds20221cg4.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -105,7 +107,6 @@ public abstract class Venta implements Serializable {
 		return (this.fecha.compareTo(fecha) == 0) ? true : false;
 	}
 
-
 	public void addItem(Item item) {
 		if (this.items == null) {
 			this.items = new ArrayList<Item>();
@@ -113,4 +114,8 @@ public abstract class Venta implements Serializable {
 		this.items.add(item);
 	}
 
+	public String getFormatoFecha() {
+		DateFormat formatearFecha = new SimpleDateFormat("dd-MM-yyyy");
+		return formatearFecha.format(getFecha());
+	}
 }

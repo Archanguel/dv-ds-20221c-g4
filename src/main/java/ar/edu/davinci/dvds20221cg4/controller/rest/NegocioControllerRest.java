@@ -28,13 +28,7 @@ public class NegocioControllerRest extends TiendaAppRest {
 	private final Logger LOGGER = LoggerFactory.getLogger(NegocioControllerRest.class);
 
 	@Autowired
-	private VentaService ventaService;
-
-	@Autowired
 	private NegocioService negocioService;
-	
-	@Autowired
-	private MapperFacade mapper;
 	
 	/**
 	 * Listar
@@ -49,7 +43,7 @@ public class NegocioControllerRest extends TiendaAppRest {
 	/**
 	 * Obtener ganancias por fecha de venta
 	 */
-	@GetMapping(path = "negocio/total")
+	@GetMapping(path = "negocio/ganancia")
 	public List<Negocio> getNegocioVentas(
 			@RequestParam(required = true, name = "fecha") String date) {
 		LOGGER.info("Fecha: " + date);
@@ -67,11 +61,11 @@ public class NegocioControllerRest extends TiendaAppRest {
 		}
 		
 		try {
-			negocios = negocioService.calcularGananciaPorDia(fecha).stream().collect(Collectors.toList());			
+			negocios = negocioService.calcularGananciaPorDia(fecha).stream().collect(Collectors.toList());
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 			e.printStackTrace();
-		}		
+		}
 
 		LOGGER.info("Ganancias de las ventas del dia");
 

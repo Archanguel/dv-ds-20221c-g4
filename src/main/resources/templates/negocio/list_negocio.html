@@ -99,11 +99,11 @@
 				<tr>
 					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;"><input type="date" id="selectedDate" ></th>
 					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;">
-						<button style="cursor: pointer;" onclick="calcularGanancia()">Calcular Ganancia del día</button>
+						<button style="cursor: pointer;" onclick="updateSubTotal()">Calcular Ganancia del día</button>
 					</th>
 					<th style="border: 1px solid; padding: 3px; text-align: center; width: 200px;"><p id="totalGanancia">Resultado</p></th>
 				
-					<a href="/tienda/negocio/ganancia"><button>VOLVER</button></a>
+					<!-- <a href="/tienda/negocio/ganancia"><button>VOLVER</button></a> -->
 				</tr>
 			</tbody>
 		</table>
@@ -122,22 +122,30 @@
 			<tbody>
 				<tr th:each="venta : ${listVentas}">
 					<td th:text="${venta.id}">Venta ID</td>
-					<td th:text="${venta.fecha}">Fecha</td>
+					<td th:text="${venta.fecha}" id="date">Fecha</td>
 					<td th:text="${venta.razonSocial}">Cliente</td>
-					<td th:text="${venta.importeFinalStr}">Importe Final</td>
+					<td th:text="${venta.importeFinalStr}" id="value">Importe Final</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	
 <script>
-	function calcularGanancia() {
-		if(document.getElementById("selectedDate").value){
-			document.getElementById("totalGanancia").innerHTML = document.getElementById("selectedDate").value;
-		} else {
-			document.getElementById("totalGanancia").innerHTML = "Fecha Inválida";
+	function updateSubTotal() {
+	  
+		var table = document.getElementById("negocio"),
+		sumVal = 0;
+		for (var i = 1; i < table.rows.length; i++) {
+	  console.log(document.getElementById("selectedDate").value);
+	  console.log(table.rows[i].cells.namedItem("date").innerHTML);
+			if (document.getElementById("selectedDate").value == table.rows[i].cells.namedItem("date").innerHTML)
+		  	{sumVal = sumVal + parseFloat(table.rows[i].cells[3].innerHTML);};
 		}
+		
+		document.getElementById("totalGanancia").innerHTML = "$" + sumVal.toFixed(2);
+		console.log(sumVal);
 	}
 </script>
+
 </body>
 </html>

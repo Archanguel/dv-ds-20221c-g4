@@ -50,7 +50,6 @@ public class NegocioServiceImpl implements NegocioService {
 		throw new BusinessException("No se encontró el negocio con el id: " + id);
 	}
 
-
 	@Override
 	public List<Negocio> list() {
 		LOGGER.debug("Listado de todos los negocios");
