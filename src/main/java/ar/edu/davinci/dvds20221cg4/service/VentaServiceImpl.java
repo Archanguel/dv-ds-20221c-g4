@@ -84,6 +84,7 @@ public class VentaServiceImpl implements VentaService {
 				.cliente(cliente)
 				.fecha(Calendar.getInstance().getTime())
 				.items(items)
+				.negocio(negocio)
 				.build();
 		
 		return ventaEfectivoRepository.save(venta);
@@ -102,10 +103,18 @@ public class VentaServiceImpl implements VentaService {
 	@Override
 	public VentaTarjeta save(VentaTarjeta venta) throws BusinessException {
 		Cliente cliente = null;
+		Negocio negocio = null;
+		
 		if (venta.getCliente().getId() != null) {
 			cliente = getCliente(venta.getCliente().getId()); 
 		} else {
 			throw new BusinessException("El cliente es obligatorio");
+		}
+		
+		if (venta.getNegocio().getId() != null) {
+			negocio = getNegocio(venta.getNegocio().getId());
+		} else {
+			throw new BusinessException("El negocio es obligatorio");
 		}
 
 		List<Item> items = new ArrayList<Item>(); 
@@ -117,6 +126,7 @@ public class VentaServiceImpl implements VentaService {
 				.cliente(cliente)
 				.fecha(Calendar.getInstance().getTime())
 				.items(items)
+				.negocio(negocio)
 				.cantidadCuotas(venta.getCantidadCuotas())
 				.coeficienteTarjeta(new BigDecimal(0.01D))
 				.build();

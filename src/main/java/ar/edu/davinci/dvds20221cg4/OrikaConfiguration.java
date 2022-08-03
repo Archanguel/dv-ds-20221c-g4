@@ -132,6 +132,10 @@ public class OrikaConfiguration {
 						.id(ventaEfectivoRequest.getClienteId())
 						.build();
 				venta.setCliente(cliente);
+				Negocio negocio = Negocio.builder()
+						.id(ventaEfectivoRequest.getNegocioId())
+						.build();
+				venta.setNegocio(negocio);
 			}
 		}).register();
 		
@@ -149,6 +153,12 @@ public class OrikaConfiguration {
 				ventaResponse.setId(venta.getId());
 				ventaResponse.setCliente(cliente);
 
+				NegocioResponse negocio = NegocioResponse.builder()
+						.id(venta.getNegocio().getId())
+						.importeTotal(venta.getNegocio().getGanancia())
+						.build();
+				ventaResponse.setNegocio(negocio);
+				
 				DateFormat formatearFecha = new SimpleDateFormat(Constantes.FORMATO_FECHA);
 				String fechaStr = formatearFecha.format(venta.getFecha());
 				
@@ -186,6 +196,10 @@ public class OrikaConfiguration {
 						.id(ventaTarjetaRequest.getClienteId())
 						.build();
 				venta.setCliente(cliente);
+				Negocio negocio = Negocio.builder()
+						.id(ventaTarjetaRequest.getNegocioId())
+						.build();
+				venta.setNegocio(negocio);
 				venta.setCantidadCuotas(ventaTarjetaRequest.getCantidadCuotas());
 			}
 		}).register();
@@ -204,6 +218,12 @@ public class OrikaConfiguration {
 				ventaResponse.setId(venta.getId());
 				ventaResponse.setCliente(cliente);
 
+				NegocioResponse negocio = NegocioResponse.builder()
+						.id(venta.getNegocio().getId())
+						.importeTotal(venta.getNegocio().getGanancia())
+						.build();
+				ventaResponse.setNegocio(negocio);
+				
 				DateFormat formatearFecha = new SimpleDateFormat(Constantes.FORMATO_FECHA);
 				String fechaStr = formatearFecha.format(venta.getFecha());
 				
@@ -243,6 +263,12 @@ public class OrikaConfiguration {
                         .id(ventaEfectivoRequest.getClienteId())
                         .build();
                 venta.setCliente(cliente);
+                
+                Negocio negocio = Negocio.builder()
+						.id(ventaEfectivoRequest.getNegocioId())
+						.build();
+				venta.setNegocio(negocio);
+				
         		DateFormat formatearFecha = new SimpleDateFormat(Constantes.FORMATO_FECHA);
                 Date fecha;
 				try {
@@ -266,6 +292,12 @@ public class OrikaConfiguration {
                         .id(ventaTarjetaRequest.getClienteId())
                         .build();
                 venta.setCliente(cliente);
+                
+                Negocio negocio = Negocio.builder()
+						.id(ventaTarjetaRequest.getNegocioId())
+						.build();
+				venta.setNegocio(negocio);
+				
                 venta.setCantidadCuotas(ventaTarjetaRequest.getCantidadCuotas());
         		DateFormat formatearFecha = new SimpleDateFormat(Constantes.FORMATO_FECHA);
                 Date fecha;
