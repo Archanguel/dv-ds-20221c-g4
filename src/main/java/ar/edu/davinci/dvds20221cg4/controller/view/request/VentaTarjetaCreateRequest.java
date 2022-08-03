@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class VentaTarjetaCreateRequest {
 
 	private Long clienteId;
+	
+	private Long negocioId;
 
 	private String fecha; 
 
