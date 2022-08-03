@@ -4,32 +4,35 @@
 <head>
 <meta charset="utf-8" />
 <title>Editar Prenda</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"/>
 <style>
 	.container { 
-	width: 100%;
-	box-shadow: 0px 2px 0px 0px gray;
+		width: 100vw;
+		margin-top: 0px;
+		margin-bottom: -8px;
+		margin-left: -8px;
+		box-shadow: 0px 2px 0px 0px gray;
 	}
 	.navbar { 
-	max-width: 1300px;
-	margin: auto;
-	padding-left: 25px;
-	padding-right: 25px;
-	display: flex;
-	align-items: center;
-	padding: 10px;
+		max-width: 1300px;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		width: 90vw;
 	}
 	
 	nav { 
-	flex: 1;
-	text-align: right;
+		flex: 1;
+		text-align: right;
 	}
 	nav ul { 
-	display: inline-block;
-	list-style-type: none;
+		display: inline-block;
+		list-style-type: none;
 	}
 	nav ul li { 
-	display: inline-block;
-	margin-left: 20px;
+		display: inline-block;
+		margin-left: 20px;
+		font-size: 20px;
 	}
 	a { 
 	text-decoration: none;
@@ -43,12 +46,126 @@
 	}
 	
 	.imagen {
-	  width: 40px;
-	  height: 40px;
+	  width: 60px;
+	  height: 60px;
 	  background-image: url('https://i.imgur.com/p10u12j.png');
 	  background-repeat: no-repeat;
 	  background-size: contain;
 	}
+	
+	label{
+	display: none;
+}
+#check{
+	z-index:3;
+	display: none;
+}
+@media (max-width: 960px){
+	nav ul{
+		display: none;
+	}
+	label{
+		display: block;
+		font-size: 25px;
+		cursor: pointer;
+		transition: 0.3s;
+		transition-property: color;
+	}
+	label:hover{
+		color: blue;
+	}
+	label .close-btn{
+		display: none;
+	}
+	label .menu-btn{
+		position: absolute;
+		margin-top: -15px;
+	}
+	#check:checked ~ nav ul{
+		z-index: 2;
+		position: fixed;
+		background: rgba(113, 113, 113, 0.9);
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 0px;
+	}
+	#check:checked ~ nav ul a{
+		font-weight: 700;
+		margin-right: 0;
+		margin-bottom: 50px;
+		letter-spacing: 2px;
+		font-size: 50px;
+	}
+	#check:checked ~ nav label .menu-btn{
+		display: none;
+	}
+	#check:checked ~ nav label .close-btn{
+		z-index: 2;
+		display: block;
+		position: fixed;
+		margin-top: -15px;
+	}
+}
+@media (max-width: 560px){
+	nav ul{
+		display: none;
+	}
+	label{
+		display: block;
+		font-size: 25px;
+		cursor: pointer;
+		transition: 0.3s;
+		transition-property: color;
+	}
+	label:hover{
+		color: blue;
+	}
+	label .close-btn{
+		display: none;
+	}
+	label .menu-btn{
+		position: absolute;
+		margin-top: -15px;
+	}
+	#check:checked ~ nav ul{
+		z-index: 2;
+		position: fixed;
+		background: rgba(113, 113, 113, 0.9);
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 0px;
+	}
+	#check:checked ~ nav ul a{
+		font-weight: 700;
+		margin-right: 0;
+		margin-bottom: 50px;
+		letter-spacing: 2px;
+		font-size: 50px;
+	}
+	#check:checked ~ nav label .menu-btn{
+		display: none;
+	}
+	#check:checked ~ nav label .close-btn{
+		z-index: 2;
+		display: block;
+		position: fixed;
+		margin-top: -15px;
+	}
+}
 </style>
 </head>
 <body>
@@ -57,6 +174,7 @@
 		<div class="navbar">
 			<div class="imagen"></div>
 			
+<input type="checkbox" id="check">
 			<nav>
 				<ul>
 					<li><a href="/tienda">Inicio</a></li>
@@ -65,9 +183,11 @@
 					<li><a href="/tienda/ventas/list">Ventas</a></li>
 					<li><a href="/tienda/negocio/list">Negocio</a></li>
 				</ul>
+<label for="check"><i class="fas fa-bars menu-btn"></i><i class="fas fa-times close-btn"></i></label>
 			</nav>
 		</div>
 	</div>
+	
 	<div align="center">
 		<h1>Editar Prenda</h1>
 		<table>
